@@ -1,0 +1,188 @@
+<html lang="en-US"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" sizes="192x192" href="../images/JS.png">
+    <title>TC Kimlik/IBAN Doğrula </title>
+
+  <style> /* CSS code in use */
+    body { max-width: 440px; }
+    #sample { overflow-x: auto; }
+    #kimlik { width: 90%; }
+    #out {
+        font-size: 18px;
+        background: blue;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+    <h2 id="title">TC Kimlik/IBAN Doğrula</h2>
+    <input type="text" id="kimlik">
+    <button onclick="">+97</button>
+<p id="out"><br>21221221272 TC ✓</p>
+<hr>
+<b>Sample code</b>
+<pre id="sample">function verifyIBAN(s) {<br>    const ASCII_0 = 48, ASCII_A = 65;<br>    if (typeof s != 'string') s = String(s)<br>    const E = /[A-Z]{2}[0-9]{2}[A-Z0-9]+/<br>    if (!s.match(E)) return false;<br>    var acc = 0;<br>    function add(n) {<br>        if (n == 32) return<br>        // if (acc &gt; 1000000) acc %= 97;<br>        acc = n &lt; ASCII_A ? 10 * acc + n - ASCII_0 <br>            : 100 * acc + n - ASCII_A + 10;<br>        acc %= 97;<br>    }<br>    s = s.substring(4)+s.substring(0,4)<br>    for (let i=0; i&lt;s.length; ++i) <br>        add(s.charCodeAt(i));<br>    return acc == 1;<br>}<br>function report() {<br>    //g flag global replace -- no need for replaceAll<br>    let v = kimlik.value.replace(/\s/g, '')<br>    let t = ''<br>    if (v.length === 11) {<br>        t = verifyTC(v)<br>        if (t === true) t = 'TC ✓'<br>    } else {<br>        t = verifyIBAN(v)? 'IBAN ✓' : 'hatalı'<br>    }<br>    out.innerText += '\n'+v+' '+t<br>    console.log(v, t)<br>}</pre>
+<hr>
+<p>Ref: <a href="https://www.wikiwand.com/tr/T.C._Kimlik_Numaras%C4%B1" target="NewTab">T.C. Kimlik -- Vikipedia</a><br>
+   <a href="https://matemacik.blogspot.com/2020/03/tc-kimlik-numaras.html" target="NewTab">Matemacik -- yöntem burada</a><br>
+   <a href="https://en.wikipedia.org/wiki/International_Bank_Account_Number#Validating_the_IBAN" target="NewTab">Validating the IBAN</a>
+</p>
+
+<!-- <script src="../util/Util.js"></script> -->
+<script>
+"use strict";
+//https://stackoverflow.com/questions/29275649/javascript-iban-validation-check-german-or-austrian-iban
+function verifyIBAN(s) {
+    const ASCII_0 = 48, ASCII_A = 65;
+    if (typeof s != 'string') s = String(s)
+    const E = /[A-Z]{2}[0-9]{2}[A-Z0-9]+/
+    if (!s.match(E)) return false;
+    var acc = 0;
+    function add(n) {
+        if (n == 32) return
+        // if (acc > 1000000) acc %= 97;
+        acc = n < ASCII_A ? 10 * acc + n - ASCII_0 
+            : 100 * acc + n - ASCII_A + 10;
+        acc %= 97;
+    }
+    s = s.substring(4)+s.substring(0,4)
+    for (let i=0; i<s.length; ++i) 
+        add(s.charCodeAt(i));
+    return acc == 1;
+}
+function verifyTC(s) {
+    // ilk test için s string olmalı
+    if (typeof s != 'string') s = String(s)
+    // 11 basamaklı sayı (ilk basamak 0 olamaz)
+    const E = /^[1-9][0-9]{10}$/
+    if (!E.test(s)) return 'hatalı'
+
+    // şimdi number[] gerekiyor
+    s = [...s].map(i => Number(i))
+    // a, b, c değerlerine bakalım
+    let a=0, b=0, c=s[10]
+    for (let i=0; i<9; i+=2) {
+        a += s[i]; b += s[i+1]
+    }
+    // (a+b)nin son basamağı c olmalı
+    if ((a+b)%10 != c) return 'a+b hata'
+
+    // (8a)nın son basamağı c olmalı
+    if (8*a%10 != c) return '8a hata'
+    return true
+}
+function report() {
+    //g flag global replace -- no need for replaceAll
+    let v = kimlik.value.replace(/\s/g, '')
+    let t = ''
+    if (v.length === 11) {
+        t = verifyTC(v)
+        if (t === true) t = 'TC ✓'
+    } else {
+        t = verifyIBAN(v)? 'IBAN ✓' : 'hatalı'
+    }
+    out.innerText += '\n'+v+' '+t
+    console.log(v, t)
+}
+    title.innerText = document.title
+    sample.innerText = verifyIBAN+'\n'+report
+    kimlik.onchange = report
+    kimlik.value = '212 212 212 72'
+    report()
+</script>
+<script src="/JS/navbar.js"></script><nav><link href="/JS/navbar.css" rel="stylesheet">
+<style>
+    nav a {background: wheat}
+</style> 
+<ul>
+    <li class="Simple">Simple
+      <div class="nav_menu">
+        <a href="/JS/simple/Date%20test.html">Date and Color</a>
+        <a href="/JS/simple/char_count.html">Char Count</a>
+        <a href="/JS/simple/Color%20Paragraphs.html">Color Paragraphs</a>
+        <a href="/JS/simple/Compare%20Colors.html">Compare Colors</a>
+        <a href="/JS/simple/HTML%20items.html">HTML Items</a>
+        <a href="/JS/simple/Calculator.html">Calculator</a>
+        <a href="/JS/simple/Counter.html">Click Count</a>
+        <!--a href="/JS/simple/Clock.html">Clock</a-->
+        <a href="/JS/simple/Timer.html">Simple Timer</a>
+        <a href="/JS/simple/JS_Animation.html">JS Animation</a>
+        <a href="/JS/simple/CSS_Transition.html">CSS Transition</a>
+        <a href="/JS/simple/ArrayAndSet.html">Array &amp; Set Demo</a>
+        <a href="/JS/simple/carousel.html">Image Carousel</a>
+        <a href="/JS/simple/JSON_Teacher.html">JSON Teacher</a>
+      </div>
+    </li>
+    <li class="Math">Math
+      <div class="nav_menu">
+        <a href="/JS/math/Counting.html">Counting</a>
+        <a href="/JS/math/Math%20functions.html">Math Functions</a>
+        <a href="/JS/math/Numbers.html">Numbers</a>
+        <a href="/JS/math/Base%20Conversion.html">Base Conversion</a>
+        <a href="/JS/math/Primes.html">Primes</a>
+        <a href="/JS/math/TCKimlik.html">TC Kimlik</a>
+        <a href="/JS/math/Folding.html">Pythagorean Triples</a>
+        <a href="/JS/canvas/Graphics.html">Graphics</a>
+        <a href="/JS/canvas/Pie%20Chart.html">Pie Chart</a>
+        <a href="/JS/canvas/webcam.html">Camera</a>
+        <a href="/JS/canvas/colliding.html">Colliding balls</a>
+        <a href="/JS/canvas/sunflower.html">Sunflower</a>
+        <a href="/JS/canvas/solar_system.html">Solar System</a>
+      </div>
+    </li>
+    <li class="Hard">Hard
+      <div class="nav_menu">
+        <a href="/JS/hard/JS%20page.html">Page made by JS</a>
+        <a href="/JS/hard/Table%20maker.html">Table Maker</a>
+        <a href="/JS/hard/Select%20file.html">Select Local</a>
+        <a href="/JS/api/directory.html">Select directory</a>
+        <a href="/JS/hard/Fetch%20remote.html">Fetch Remote</a>
+        <a href="/JS/data/Students.html">Student Database</a>
+        <a href="/JS/hard/ObjectList.html">List of Objects</a>
+        <a href="/JS/linear/Equation.html">Linear Equations</a>
+        <a href="/JS/auto/Auto.html">Automata</a>
+        <a href="/JS/auto/Expression.html">Expression tree</a>
+        <a href="/JS/hard/JSON_Hilite.html">JSON Highlight</a>
+        <a href="/JS/hard/Philosophers.html">Dining Philosophers</a>
+        <a href="/JS/sss/inspector.html">Inspector</a>
+      </div>
+    </li>
+    <li class="Events">Events
+      <div class="nav_menu" style="left: 131px;">
+        <a href="/JS/hard/Events.html">Event Handlers</a>
+        <a href="/JS/hard/Battery.html">Battery &amp; Internet</a>
+        <a href="/JS/hard/Propagation.html">Event Propagation</a>
+        <a href="/JS/hard/Dragging.html">Draggable Elements</a>
+        <a href="/JS/hard/URL_parts.html">URL Parts</a>
+        <a href="/JS/util/Menu_items.html">Menu</a>
+        <a href="/JS/util/Modal_dialog.html">Modal dialog</a>
+        <a href="/JS/util/Details.html">Details-Summary</a>
+        <a href="/JS/util/name-tag.html">Web Components</a>
+        <a href="/JS/hard/DOM%20tree.html">DOM tree</a>
+      </div>
+    </li>
+    <li class="External">External
+      <div class="nav_menu" style="left: 217px;">
+        <a href="/JS/api/qrcode.html">QR Code</a>
+        <a href="/JS/api/GitHub_Users.html">GitHub Users</a>
+        <a href="/JS/api/Location.html">Location</a>
+        <a href="/JS/api/Weather.html">OpenWeather</a>
+        <a href="/JS/canvas/googlemaps.html">Maps 1</a>
+        <a href="/JS/canvas/mapboxgl.html">Maps 2</a>
+        <a href="/JS/canvas/ibb_map.html">Maps 3</a>
+        <a href="/JS/api/YouTube.html">YouTube play list</a>
+        <a href="/JS/api/YT_teacher.html">YouTube teacher</a>
+        <a href="/JS/api/Drive_API.html">Google Drive</a>
+        <a href="/JS/api/Drive_teacher.html">Drive teacher</a>
+      </div>
+    </li>
+</ul></nav>
+
+
+
+</body></html>
