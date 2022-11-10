@@ -1,86 +1,121 @@
 <html lang="en-US"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Asiye Ilayda Sagkol </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" href="/JS/images/JS.png">
+  <title>Battery Status </title>
   
-    <style>
-      /* CSS comment */
-      body {
-        max-width: 440px;
-      }
+<style>
+  body { max-width: 440px; }
+  #progress { width: 200px; }
+</style>
+</head>
+
+<body>
+<h2 id="ad">Asiye İlayda Sağkol</h2>
+<h2 id="title">Battery Status</h2>
+<div id="charging">Discharging...</div>
+<div>
+ <progress id="progress" value="50" max="100"></progress> 
+ <span id="levelTxt">50%</span>
+</div>
+<div id="message"></div>
+
+<h2>Online Status</h2>
+<p id="out"></p>
+<p id="online" style="color: green;">connected -- online</p>
+
+<h2>Keyboard</h2>
+<span id="up"></span>
+<span id="key"></span>
+
+<script>
+"use strict";
+function getBatteryState(evt) {
+    let battery = evt.target;
+    let state = "", msg = "";
+    let level = Math.round(battery.level * 100);
+    if (battery.charging) { 
+       state = level==100? "Fully charged" : "Charging...";
+       if (battery.chargingTime < Infinity) {
+         let tf = getTimeFormat(battery.chargingTime);
+         msg = tf.hour + ":" + tf.minute + " to full charge";
+       }
+    } else { 
+      state = level>15? "Discharging..." : "Connect the charger"
+      if (battery.dischargingTime < Infinity) {
+        let tf = getTimeFormat(battery.dischargingTime);
+        msg = tf.hour + ":" + tf.minute + " remaining";
+       }
+    }
+    console.log(level, battery.charging, msg)
+    charging.innerText = state;
+    progress.value = level;
+    levelTxt.innerText = level + "%";
+    message.innerText = msg;
+}
+
+function getTimeFormat(time) {
+    let m = time / 60;
+    let hour = parseInt(m / 60);
+    let minute = parseInt(m % 60);
+    minute = minute < 10 ? "0" + minute : minute;
+    return {hour, minute};
+}
+
+function init(b) {
+    getBatteryState({type:'init', target:b})
+    b.onlevelchange = getBatteryState
+    b.onchargingchange = getBatteryState
+ 
+}
+function showOnline(b) {
+  let msg
+  if (b) {
+      msg = 'connected -- online'
+      online.style.color = 'green'
+  } else {
+      msg = 'disconnected -- offline'
+      online.style.color = 'red'
+  }
+  online.innerText = msg; 
+  console.log(msg)
+}
+
+function keyboard(k){
+  // down
+  window.onkeydown =(e) =>{
+    if(e.altKey){
+      up.innerText="Alt";
+    }else if(e.ctrlKey){
+      up.innerText="Ctrl";
+    }else if(e.shiftKey){
+      up.innerText="Shift";
+    }
+    key.innerText=e.key;
+  };
+  // up
+  window.onkeyup=(e) =>{
+    if(!e.getModifierState("Alt") &&
+    !e.getModifierState("Control") &&
+    !e.getModifierState("Shift") ){
+      up.innerText="";
+    }
+  };
+ 
+}
   
-      #url {
-        width: 190px;
-      }
   
-      span,
-      #url {
-        color: blue;
-      }
-    </style>
-  </head>
-  
-  <body>
-    <!-- HTML comment: Modify all items marked xxx -->
-  
-    <h2 id="title" title="Put your name here">Asiye Ilayda Sagkol</h2>
-    <br>
-    <h2>Battery Status</h2>
-    <p> <span id="batstatus">Discharging...</span></p>
-    <p title="Battery level (integer)">
-      Battery level: <span id="lev">% 69</span>
-    </p>
-  
-    <h2>Online Status</h2>
-    <p> <span id="onlinestatus">Connected -- online</span></p>
-    
-    <h2>Keyboard</h2>
-    <p> <span id="keyboardresult"></span></p>
-  
-    <hr>
-    <b>Sample code</b>
-    <pre id="sample">function initialize() {<br>      //battery level<br>      //initialize first values<br>      navigator.getBattery().then(<br>        b =&gt; lev.innerText = ('% ' + b.level * 100)<br>      ) <br>      navigator.getBattery().then(<br>        b =&gt; (batstatus.innerText = b.charging ? 'Charging...':'Discharging...')<br>      )<br>      //onchange<br>      navigator.getBattery().then(e =&gt; <br>      e.onchargingchange = b =&gt;<br>      (batstatus.innerText = e.charging ?'Charging':'Discharging'))<br>      .then(e =&gt; e.onlevelchange = b =&gt;<br>      (lev.innerText =batteryLevel=e.level*100))<br>      <br>      //Online Status<br>      //initialize first values<br>      onlinestatus.innerText=<br>      window.navigator.onLine?"Connected -- online":"Disconnected --offline"<br>      //onchange<br>      window.onoffline = e=&gt;  onlinestatus.innerText="Disconnected --offline"<br>      window.ononline = e=&gt;  onlinestatus.innerText="Connected -- online"<br><br>      //Keyboard<br>      window.onkeyup = e =&gt;(keyboardresult.innerText=("You pressed :"+e.key))<br><br>    }<br></pre>
-  
-    <hr>
-  
-    <script>
-      "use strict";
-      function initialize() {
-        //battery level
-        //initialize first values
-        navigator.getBattery().then(
-          b => lev.innerText = ('% ' + b.level * 100)
-        ) 
-        navigator.getBattery().then(
-          b => (batstatus.innerText = b.charging ? 'Charging...':'Discharging...')
-        )
-        //onchange
-        navigator.getBattery().then(e => 
-        e.onchargingchange = b =>
-        (batstatus.innerText = e.charging ?'Charging':'Discharging'))
-        .then(e => e.onlevelchange = b =>
-        (lev.innerText =batteryLevel=e.level*100))
-        
-        //Online Status
-        //initialize first values
-        onlinestatus.innerText=
-        window.navigator.onLine?"Connected -- online":"Disconnected --offline"
-        //onchange
-        window.onoffline = e=>  onlinestatus.innerText="Disconnected --offline"
-        window.ononline = e=>  onlinestatus.innerText="Connected -- online"
-  
-        //Keyboard
-        window.onkeyup = e =>(keyboardresult.innerText=("You pressed :"+e.key))
-        
-  
-      }
-      
-      title.innerText = document.title;
-      sample.innerText = initialize + '\n';
-      initialize();
-  
-    </script>
-  
-  
-  
-  </body></html>
+title.innerText = document.title;
+onoffline = () => showOnline(false)
+ononline  = () => showOnline(true)
+showOnline(navigator.onLine)
+if (navigator.getBattery)
+    navigator.getBattery().then(init)
+else throw "getBattery not found"
+
+keyboard();
+</script>
+
+
+
+</body></html>
