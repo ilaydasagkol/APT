@@ -1,0 +1,86 @@
+<html lang="en-US"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Asiye Ilayda Sagkol </title>
+  
+    <style>
+      /* CSS comment */
+      body {
+        max-width: 440px;
+      }
+  
+      #url {
+        width: 190px;
+      }
+  
+      span,
+      #url {
+        color: blue;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <!-- HTML comment: Modify all items marked xxx -->
+  
+    <h2 id="title" title="Put your name here">Asiye Ilayda Sagkol</h2>
+    <br>
+    <h2>Battery Status</h2>
+    <p> <span id="batstatus">Discharging...</span></p>
+    <p title="Battery level (integer)">
+      Battery level: <span id="lev">% 69</span>
+    </p>
+  
+    <h2>Online Status</h2>
+    <p> <span id="onlinestatus">Connected -- online</span></p>
+    
+    <h2>Keyboard</h2>
+    <p> <span id="keyboardresult"></span></p>
+  
+    <hr>
+    <b>Sample code</b>
+    <pre id="sample">function initialize() {<br>      //battery level<br>      //initialize first values<br>      navigator.getBattery().then(<br>        b =&gt; lev.innerText = ('% ' + b.level * 100)<br>      ) <br>      navigator.getBattery().then(<br>        b =&gt; (batstatus.innerText = b.charging ? 'Charging...':'Discharging...')<br>      )<br>      //onchange<br>      navigator.getBattery().then(e =&gt; <br>      e.onchargingchange = b =&gt;<br>      (batstatus.innerText = e.charging ?'Charging':'Discharging'))<br>      .then(e =&gt; e.onlevelchange = b =&gt;<br>      (lev.innerText =batteryLevel=e.level*100))<br>      <br>      //Online Status<br>      //initialize first values<br>      onlinestatus.innerText=<br>      window.navigator.onLine?"Connected -- online":"Disconnected --offline"<br>      //onchange<br>      window.onoffline = e=&gt;  onlinestatus.innerText="Disconnected --offline"<br>      window.ononline = e=&gt;  onlinestatus.innerText="Connected -- online"<br><br>      //Keyboard<br>      window.onkeyup = e =&gt;(keyboardresult.innerText=("You pressed :"+e.key))<br><br>    }<br></pre>
+  
+    <hr>
+  
+    <script>
+      "use strict";
+      function initialize() {
+        //battery level
+        //initialize first values
+        navigator.getBattery().then(
+          b => lev.innerText = ('% ' + b.level * 100)
+        ) 
+        navigator.getBattery().then(
+          b => (batstatus.innerText = b.charging ? 'Charging...':'Discharging...')
+        )
+        //onchange
+        navigator.getBattery().then(e => 
+        e.onchargingchange = b =>
+        (batstatus.innerText = e.charging ?'Charging':'Discharging'))
+        .then(e => e.onlevelchange = b =>
+        (lev.innerText =batteryLevel=e.level*100))
+        
+        //Online Status
+        //initialize first values
+        onlinestatus.innerText=
+        window.navigator.onLine?"Connected -- online":"Disconnected --offline"
+        //onchange
+        window.onoffline = e=>  onlinestatus.innerText="Disconnected --offline"
+        window.ononline = e=>  onlinestatus.innerText="Connected -- online"
+  
+        //Keyboard
+        window.onkeyup = e =>(keyboardresult.innerText=("You pressed :"+e.key))
+        
+  
+      }
+      
+      title.innerText = document.title;
+      sample.innerText = initialize + '\n';
+      initialize();
+  
+    </script>
+  
+  
+  
+  </body></html>
