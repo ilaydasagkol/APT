@@ -8,6 +8,11 @@
     #sample { overflow-x: auto; }
     #out {
       height: 35px;
+      
+    }
+    #image {
+  height: 200px;
+  width: 447px;
     }
   </style>
 </head>
@@ -35,7 +40,7 @@
 let arr =[];
 arr.length =8;
 
-for(let i=1;i<8;i++){
+for(let i=1;i<arr.length;i++){
 fetch("https://ilaydasagkol.github.io/APT/sprite/" + i+".jpg") 
 .then(res => res.blob()) // Gets the response and returns it as a blob 
 .then(blob => { 
