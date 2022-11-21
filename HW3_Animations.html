@@ -1,0 +1,80 @@
+<html lang="en-US"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" sizes="192x192" href="/JS/images/JS.png">
+    <title>HW3 Animations</title>
+
+  <style>
+    body { max-width: 500px; }
+    #sample { overflow-x: auto; }
+    button {
+      user-select: none;
+      cursor: pointer;
+    }
+    #box {
+      font-size: 180px;
+      background: #cfc;
+      width: 300px;
+      height: 240px;
+      position: relative;
+    }
+    #iii, #dot {
+      user-select: none;
+      position: absolute;
+      left: 130px;
+    }
+    #iii {
+      color: blue;
+    }
+    #dot {
+      background: rgba(0, 0, 0, 0);
+      color: #da0;
+      top: -105px;
+    }
+    #out {
+      height: 35px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2 id="title">HW3 Animation</h2>
+<img id="a1"/>
+<div id="box" onclick="box.animate(t2, 5000)">
+  <span id="iii">ı</span>
+  <span id="dot">.</span>
+</div>
+
+<p>
+<button onclick="this.animate(t1, 5000)">Start</button>
+<button onclick="dot .animate(t2, 5000)">Pause</button>
+<button onclick="box .animate(t3, 6000)">Stop</button>
+<button onclick="out .animate(t4, 6000)">Next</button>
+<button onclick="out .animate(t5, 6000)">Prev</button>
+</p>
+
+
+<hr>
+<b>Sample code</b>
+<pre id="sample">t3 = { background: ["yellow", "cyan", "magenta", "yellow"] }<br>&lt;button onClick="box.animate(t3, 6000)"&gt;background&lt;/button&gt;</pre>
+
+</p>
+<script>
+fetch("https://ilaydasagkol.github.io/APT/sprite/1.jpg") 
+             .then(res => res.blob()) // Gets the response and returns it as a blob 
+             .then(blob => { 
+                 let objectURL = URL.createObjectURL(blob); 
+                 usableImage = objectURL; 
+a1.src = usableImage;
+             });
+
+
+
+
+
+
+
+</script>
+
+
