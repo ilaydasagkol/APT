@@ -34,20 +34,16 @@
 <script>
 let arr =[];
 arr.length =8;
-for(let i=1;i<arr.length;i++){
+
+for(let i=1;i<8;i++){
 fetch("https://ilaydasagkol.github.io/APT/sprite/" + i+".jpg") 
- .then(res => res.blob()) // Gets the response and returns it as a blob 
- .then(blob => { 
- let objectURL=URL.createObjectURL(blob); 
- usableImage=objectURL; 
+.then(res => res.blob()) // Gets the response and returns it as a blob 
+.then(blob => { 
+let objectURL=URL.createObjectURL(blob); 
+usableImage=objectURL; 
 a1.src = usableImage;
 
-});
-function start(){
-
-
-} 
-
+  });
 }
 
 </script>
