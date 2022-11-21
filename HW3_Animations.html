@@ -1,7 +1,6 @@
 <html lang="en-US"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" sizes="192x192" href="/JS/images/JS.png">
     <title>HW3 Animations</title>
 
   <style>
@@ -30,22 +29,26 @@
 
 <hr>
 <b>Sample code</b>
-<pre id="sample">t3 = { background: ["yellow", "cyan", "magenta", "yellow"] }<br>&lt;button onClick="box.animate(t3, 6000)"&gt;background&lt;/button&gt;</pre>
 
 </p>
 <script>
 let arr =[];
 arr.length =8;
-
-for(let i=1; i<arr.length ;i++){
+let i=1;
+while(i<arr.length){
 fetch("https://ilaydasagkol.github.io/APT/sprite/" + i+".jpg") 
-             .then(res => res.blob()) // Gets the response and returns it as a blob 
-             .then(blob => { 
-                 let objectURL = URL.createObjectURL(blob); 
-                 usableImage = objectURL; 
+ .then(res => res.blob()) // Gets the response and returns it as a blob 
+ .then(blob => { 
+ let objectURL=URL.createObjectURL(blob); 
+ usableImage=objectURL; 
 a1.src = usableImage;
-sleep(20000);
-             });
+i++;
+
+});
+function start(){
+
+
+} 
 
 }
 
