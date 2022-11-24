@@ -3,18 +3,6 @@
     <meta name="viewport" content="width=device-width">
     <title>HW3 Animations</title>
 
-  <style>
-    body { max-width: 500px; }
-    #sample { overflow-x: auto; }
-    #out {
-      height: 35px;
-      
-    }
-    #image {
-  height: 200px;
-  width: 447px;
-    }
-  </style>
 </head>
 
 <body>
@@ -24,7 +12,7 @@
 </div>
 
 <p>
-<button onclick="this.animate(t1, 5000)">Start</button>
+<button onclick="start()">Start</button>
 <button onclick="dot .animate(t2, 5000)">Pause</button>
 <button onclick="box .animate(t3, 6000)">Stop</button>
 <button onclick="out .animate(t4, 6000)">Next</button>
@@ -41,16 +29,36 @@ let arr =[];
 arr.length =8;
 
 for(let i=1;i<arr.length;i++){
-fetch("https://ilaydasagkol.github.io/APT/sprite/1.jpg") 
+fetch("https://ilaydasagkol.github.io/APT/sprite" +i+".jpg") 
 .then(res => res.blob())
 .then(blob => { 
 let objectURL=URL.createObjectURL(blob); 
 usableImage=objectURL; 
 a1.src = usableImage;
-
   });
-}
+  arr[i] = "https://ilaydasagkol.github.io/APT/sprite" +i+".jpg";
 
+}
+function start(){
+for(let i =1;i<arr.length;i++){
+  img.onload = () => { setInterval(draw, 120) }
+  let W = 200, H = 1400, k = 0, x = 0;
+  let draw = () => {
+      cx.clearRect(x, 0, W, H);
+      x = (x + W) % cv.width;
+      cx.drawImage(img,
+                   // source rectangle
+                   k*W, 0, W, H,
+                   // destination rectangle
+                   x,   0, W, H);
+      k = (k + 1) % 8;
+
+
+}
+function stop
+
+
+}
 </script>
 
 
