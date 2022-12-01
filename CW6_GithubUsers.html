@@ -55,7 +55,7 @@ function cause(s) {
 async function toJSON(url) {
   try {
     let r = await fetch(url)
-    if (!r.ok) throw cause(r.status)
+    if (!r.ok) exception(r.status)
     return r.json()
   } catch (e) {
     error(e)
@@ -63,7 +63,6 @@ async function toJSON(url) {
 }
 async function readUser() {
     const URL = "https://api.github.com/users/"
-    const BR = '<BR>'
     let u = await toJSON(URL+usr.value)
     if (!u || !u.login) return
     out.style.color = ''
@@ -87,6 +86,8 @@ async function readUser() {
     if(l!=null){
     locF.innerHTML = "Location : "+l
     }else locF.innerHTML = "Location : unspecified"
+    //add organisation
+    let c = u.company;
     if(c!=null){
     orgF.innerHTML = "Organization :"+c
     }else orgF.innerHTML = "Organization : unspecified" 
