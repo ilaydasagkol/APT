@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-  <link rel="icon" href="https://amineceydaabanik.github.io/AdvancedProgramming/images/homeicon.png">
+  <link rel="icon" href="../images/icon192.png">
   <title>Open Weather</title>
   <style>
     body {
@@ -47,15 +47,9 @@
 <p><img id=icon>
 <span id=hava>weather</span></p>
 
-<canvas id=canvas width=350 height=100></canvas>
-<canvas id=canvas2 width=350 height=100></canvas>
-<div class=dar>
-
+<canvas id=canvas width=700 height=400></canvas>
 
   <pre id=detay>detail</pre>
-</div>
-
-<div class=dar>
   <b>Sun</b>
   <pre id=gunes>sunrise</pre>
 </div>
@@ -70,12 +64,7 @@
 <p id=err>You need an API key for openweathermap.org 
   <a href="https://openweathermap.org/appid" 
    target="NewTab">here</a> 
-</p>
 </div>
-<p>SS: 
-    <a href="CW12.PNG" 
-       target="NewTab">Ekran Görüntüsü</a>
-  </p>
 <script>
 "use strict";
 function toHM(t) { // t in seconds -- convert to minutes
@@ -153,27 +142,22 @@ async function askWeather() {
     function draw() { 
     var canvas = document.getElementById("canvas");
     const cx = canvas.getContext("2d");
-    let text= "DETAY = "+detay.innerText;
+    let text= "HAVA DURUMU = "+hava.innerText;
+    let tex_t= "LOCATİON = "+yer.innerText;
  
     cx.beginPath(); cx.lineWidth = 5;
-    cx.fillStyle = "white"; 
-    cx.strokeStyle = "blue";
-    cx.rect(0, 10, 350, 80);
-    cx.fill(); cx.stroke();
-    cx.fillStyle = "blue"; 
-    cx.fillText(text,10,55);
+    cx.fillStyle = "pink"; 
+    cx.strokeStyle = "yellow";
+    cx.rect(0, 8, 400, 150);
+    cx.fill();
+    cx.stroke();
+    cx.fillStyle = "black"; 
+    cx.font = "16px Calibri";
+    cx.fillText(text,10,55); 
+    //cx.fillText(hava.innerText,60,70);
+    cx.fillText(yer.innerText,200,90);
+    cx.showIcon(icon,70,70);
 
-    var canvas2 = document.getElementById("canvas2");
-    const cr = canvas2.getContext("2d");
-   
- 
-    cr.beginPath(); cx.lineWidth = 5;
-    cr.fillStyle = "white"; 
-    cr.strokeStyle = "blue";
-    cr.rect(0, 10, 350, 80);
-    cr.fill(); cr.stroke();
-    cr.fillStyle = "blue"; 
-    cr.fillText("SUN = "+gunes.innerText,10,55);
 }
 function doZoom(event) {
 	event.preventDefault();
@@ -184,9 +168,12 @@ function doZoom(event) {
 }
 
 function showIcon(i) {
+    let c = new Image();
     const URL = "https://openweathermap.org/img/w/"
     icon.src = URL+i+".png"
+    c.src = icon.src;
     document.querySelector('link').href = icon.src
+ 
 }
 function convert(kelvin){
     return (kelvin - 273.15);
@@ -219,7 +206,7 @@ function getAPIkey() {
 }
     err.style.display = "none"
     getAPIkey(); askLocation()
-mahal.onkeyup = e => {
+    mahal.onkeyup = e => {
   let t = e.target
   if (e.keyCode === 13) {
     [lat, lon] = mahal.value.split(/[ ,]+/)
