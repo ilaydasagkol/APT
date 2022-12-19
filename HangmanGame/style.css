@@ -20,7 +20,6 @@ html,body{
 }
 #section-middle{
   display:grid;
-
   height: fit-content;
   justify-content: space-evenly;
 }
@@ -29,7 +28,7 @@ html,body{
   text-align:left;
 }
 .section-heading{
-  padding:15px;
+  padding:10px;
   text-align: center;
   position: relative;
   top: 380px;
@@ -37,17 +36,17 @@ html,body{
   color: white;
 }
  #keyboard{
-  display: flex;
+  display:inline-table;
   justify-content:flex-start;
   cursor:auto;
   pointer-events: all;
-  position: center;
-  top: 300px;
+  position: fixed;
+  top:55%;
 } 
 .alpha-key{
   padding: 1px;
   margin: 1px 1px;
-  display: inline-table;
+  display:inline-table;
   width: 23px;
   height: 26px;
   text-align: center;
@@ -65,9 +64,9 @@ canvas{
 
 }
 #canvas{
-  margin: -100px 200px;
-  width: 100px;
-  height: 200px;
+  margin: -60px 200px;
+  width: 270px;
+  height: 250px;
   background-color: #f1faee;
   outline: 2px ridge black;
 }
@@ -76,5 +75,5 @@ canvas{
   display:inline-flex;
   padding: 15px;
   border-radius: 8px;
-  margin-top: 300px;
+  margin-top: 350px;
 }
