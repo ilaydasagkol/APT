@@ -41,8 +41,8 @@ html,body{
   justify-content:flex-start;
   cursor:auto;
   pointer-events: all;
-  position: fixed;
-  top:400px;
+  position: center;
+  top: 300px;
 } 
 .alpha-key{
   padding: 1px;
