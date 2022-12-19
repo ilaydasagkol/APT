@@ -65,7 +65,6 @@ canvas{
   height: 250px;
   background-color: #f1faee;
   outline: 2px ridge black;
-  text-align: center;
 }
 #restart{ 
   background-color: #f1faee;
