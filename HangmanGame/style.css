@@ -36,9 +36,10 @@ html,body{
   color: white;
 }
  #keyboard{
-  display:inline-table;
+  display:grid;
+  margin: auto 0px;
   justify-content:flex-start;
-  cursor:initial;
+  cursor:auto;
   pointer-events: all;
   position: fixed;
   top:330px;
