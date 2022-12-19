@@ -38,7 +38,7 @@ html,body{
  #keyboard{
   display:inline-table;
   justify-content:flex-start;
-  cursor:auto;
+  cursor:initial;
   pointer-events: all;
   position: fixed;
   top:330px;
