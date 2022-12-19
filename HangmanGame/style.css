@@ -2,7 +2,7 @@
   box-sizing:border-box;
         }
 html,body{
-  min-height: 10vh;
+  min-height: 10,0vh;
   display: flex;
   flex-direction:column;
   justify-content: space-around;
@@ -31,22 +31,20 @@ html,body{
   padding:10px;
   text-align: center;
   position: relative;
-  top: 310px;
+  top: 320px;
   font-size: 20px;
   color: white;
 }
  #keyboard{
-  display:grid;
-  margin: auto 0px;
-  justify-content:flex-start;
-  cursor:auto;
-  pointer-events: all;
-  position: fixed;
-  top:330px;
   text-align: center;
+position: absolute;
+width: 43%;
+top: 350px;
+left: 50%;
+Transform: translate(-50%, -50%);
 } 
 .alpha-key{
-  padding: 1px;
+  padding: 5px;
   margin: 1px 1px;
   display:inline-table;
   width: 23px;
@@ -77,5 +75,5 @@ canvas{
   display:inline-flex;
   padding: 15px;
   border-radius: 8px;
-  margin-top: 240px;
+  margin-top: 250px;
 }
