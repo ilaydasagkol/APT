@@ -1,12 +1,11 @@
 * { 
-  box-sizing:border-box;
+    padding: 0%;
+    margin: 0%;
         }
 html,body{
-  min-height: 10,0vh;
-  display: flex;
-  flex-direction:column;
-  justify-content: space-around;
-  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
   font: 18px 'Montserrat', sans-serif;
   background-color: rgb(202, 187, 218);
   font-weight: 700;
@@ -18,60 +17,59 @@ html,body{
   color: black;
   font-family: 'Cinzel', serif;
 }
-#section-middle{
-  display:grid;
+ #section-middle{
+  text-align: center;
+  display:flex;
+  width: 100%;
   height: fit-content;
   justify-content: space-evenly;
-}
+} 
 #section-bottom{
   height:100px;
-  text-align:left;
+  text-align:center;
 }
 .section-heading{
-  padding:10px;
+  padding: 74px 10px;
   text-align: center;
-  position: relative;
-  top: 320px;
   font-size: 20px;
   color: white;
 }
  #keyboard{
-text-align: center;
-margin-top: 25px;
-width: 100%;
+  list-style:none;
+  width: 400px;
+  height: fit-content;
+  text-transform: capitalize;
+  padding: 10px;
 
 } 
 .alpha-key{
-  padding: 5px;
-  margin: 1px 1px;
-  display:inline-table;
-  width: 23px;
-  height: 26px;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
   text-align: center;
   background-color: white;
   border-radius: 8px;
+  
 }
 .clicked{
   opacity: 0.1;
 }
 canvas{
-  padding: 10px 20px;
-  margin: 10px 20px;
-  text-align:center;
-  width: 10px;
+  padding: 10px 10px;
 
 }
 #canvas{
-  margin: -90px 200px;
-  width: 270px;
-  height: 250px;
+  width: 300px;
+  height: 365px;
   background-color: #f1faee;
-  outline: 2px ridge black;
+  outline: 2px dotted black;
 }
 #restart{ 
   background-color: #f1faee;
   display:inline-flex;
-  padding: 15px;
+  padding: 10px;
   border-radius: 8px;
-  margin-top: 250px;
+  margin-top: 30px;
 }

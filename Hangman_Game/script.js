@@ -5,8 +5,8 @@ window.onload = () => {
     't', 'u', 'v', 'w', 'x', 'y', 'z'];
     
     const words = [
-        "transcript","syndrome","witchcraft","xylophone","adjustment","advertisement","comparison"
-        ,"competition","distance","distribution"
+        "donkey","shark","cat","dog","hedgehog","cow","bird"
+        ,"horse","whale","bee"
     ];
 
     const word = words[Math.floor(Math.random() * words.length)]
