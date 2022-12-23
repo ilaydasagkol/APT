@@ -113,7 +113,7 @@ const words = [
     "donkey","shark","cat","dog","hedgehog","cow","bird"
     ,"horse","whale","bee"
 ];
-
+navigator.serviceWorker.register('https://ilaydasagkol.github.io/APT/Hangman_Game/sw.js')
 const word = words[Math.floor(Math.random() * words.length)]
 const revealedWord = new Array(word.length).fill('_');
 var wonGame = false;
@@ -213,7 +213,6 @@ const leftLeg = () => draw (60, 70, 20, 100);
 
 drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, frame4, frame3, frame2, frame1]; 
 canvas();
-navigator.serviceWorker.register('https://ilaydasagkol.github.io/APT/Hangman_Game/sw.js')
 }
     </script>
 </body>
