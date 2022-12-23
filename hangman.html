@@ -110,7 +110,8 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 navigator.serviceWorker.register('https://ilaydasagkol.github.io/APT/sw.js')
 
-const words = ["donkey","shark","cat","dog","hedgehog","cow","bird","horse","whale","bee"];
+const words = ["squirrel","tortoise","chamelon","rooster","hedgehog","sheep","goat",
+"horse","donkey","camel","elephant","whale","dolphin","kangaroo","wolf","shark","eagle"];
 const word = words[Math.floor(Math.random() * words.length)]
 const revealedWord = new Array(word.length).fill('_');
 var wonGame = false;
@@ -132,7 +133,7 @@ playAgain.addEventListener('click', () => {
 const wonCheck = () => {
     if(word === revealedWord.join('').toLowerCase()){
         wonGame = true;
-        livesDiv.innerHTML = "!!! WON !!!"
+        livesDiv.innerHTML = "WON !"
     } 
 }
 
@@ -141,7 +142,7 @@ const checkWord = (letterChosed) => {
         guessed.push(letterChosed);
         if(word.indexOf(letterChosed) === -1){
             totalLives--;
-            livesDiv.innerHTML = totalLives > 0 ? "You have " + totalLives + " lives left !" : "!!! OOPS, GAME OVER !!!";
+            livesDiv.innerHTML = totalLives > 0 ? "You have " + totalLives + " lives left !" : "OOPS, GAME OVER! Animal name is"+word;
             drawHangman();
         }else{
             for(let i=0;i<word.length; i++){
