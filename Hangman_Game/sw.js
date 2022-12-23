@@ -1,5 +1,5 @@
-const CACHE ='https://ilaydasagkol.github.io/Hangman_Game/proje.html'
-const FILES = ['https://ilaydasagkol.github.io/Hangman_Game/proje.html']
+const CACHE ='https://ilaydasagkol.github.io/APT/Hangman_Game/proje.html'
+const FILES = ['https://ilaydasagkol.github.io/APT/Hangman_Game/proje.html']
 function installCB(e) {
   e.waitUntil(
     caches.open(CACHE)
