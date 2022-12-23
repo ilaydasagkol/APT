@@ -142,7 +142,7 @@ const checkWord = (letterChosed) => {
         guessed.push(letterChosed);
         if(word.indexOf(letterChosed) === -1){
             totalLives--;
-            livesDiv.innerHTML = totalLives > 0 ? "You have " + totalLives + " lives left !" : "OOPS,GAME OVER! Animal name is ="+word;
+            livesDiv.innerHTML = totalLives > 0 ? "You have " + totalLives + " lives left !" : "OOPS, GAME OVER! Animal name is ="+word;
             drawHangman();
         }else{
             for(let i=0;i<word.length; i++){
