@@ -103,17 +103,13 @@ canvas{
     </section>
   
     <script>
-        window.onload = () => {navigator.serviceWorker.register('https://ilaydasagkol.github.io/APT/Hangman_Game/sw.js');
+        window.onload = () => {
 
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-const words = [
-    "donkey","shark","cat","dog","hedgehog","cow","bird"
-    ,"horse","whale","bee"
-];
-
+const words = ["donkey","shark","cat","dog","hedgehog","cow","bird","horse","whale","bee"];
 const word = words[Math.floor(Math.random() * words.length)]
 const revealedWord = new Array(word.length).fill('_');
 var wonGame = false;
@@ -130,6 +126,7 @@ const playAgain = document.getElementById('restart');
 playAgain.addEventListener('click', () => {
     location.reload();
 });
+
 
 const wonCheck = () => {
     if(word === revealedWord.join('').toLowerCase()){
@@ -165,6 +162,7 @@ const choseAlphabet = (e) => {
     }
 }
 
+
 alphabet.forEach(letter => {
     var alphabtn = document.createElement('div');
     alphabtn.classList.add('alpha-key');
@@ -199,9 +197,7 @@ const head = () => {
 const draw = ($pathFromx, $pathFromy, $pathTox, $pathToy) => {
     context.moveTo($pathFromx, $pathFromy);
     context.lineTo($pathTox, $pathToy);
-    context.stroke(); 
-}
-navigator.serviceWorker.register('https://ilaydasagkol.github.io/APT/Hangman_Game/sw.js');
+    context.stroke(); }
 
 const frame1 = () => draw (0, 150, 150, 150);
 const frame2 = () => draw (10, 0, 10, 600);
