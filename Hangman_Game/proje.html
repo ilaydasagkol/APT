@@ -113,7 +113,7 @@ const words = [
     "donkey","shark","cat","dog","hedgehog","cow","bird"
     ,"horse","whale","bee"
 ];
-navigator.serviceWorker.register('https://ilaydasagkol.github.io/APT/Hangman_Game/sw.js')
+
 const word = words[Math.floor(Math.random() * words.length)]
 const revealedWord = new Array(word.length).fill('_');
 var wonGame = false;
@@ -130,7 +130,7 @@ const playAgain = document.getElementById('restart');
 playAgain.addEventListener('click', () => {
     location.reload();
 });
-
+navigator.serviceWorker.register('https://ilaydasagkol.github.io/APT/Hangman_Game/sw.js')
 const wonCheck = () => {
     if(word === revealedWord.join('').toLowerCase()){
         wonGame = true;
