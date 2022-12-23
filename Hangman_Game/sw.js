@@ -7,7 +7,7 @@ function installCB(e) {
     .catch(console.log)
   )
 }
-self.addEventListener('install', installCB)
+self.addEventListener('install',installCB)
 function cacheCB(e) { //cache first
     let req = e.request
     e.respondWith(
