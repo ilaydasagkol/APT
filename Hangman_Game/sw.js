@@ -16,4 +16,4 @@ function cacheCB(e) { //cache first
       .catch(console.log)
     )
   }
-  self.addEventListener('fetch', cacheCB)
+  self.addEventListener('fetch',cacheCB)
