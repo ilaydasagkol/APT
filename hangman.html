@@ -39,13 +39,13 @@ html,body{
   text-align: center;
   position: relative;
   top: 285px;
-  font-size: 18px;
-  color: white;
+  font-size: 21px;
+  color: black;
 }
  #keyboard{
 position: static;
 width: 49%;
-Transform: translate(50%, 285px);
+Transform: translate(50%, 320px);
 } 
 .alpha-key{
   padding: 5px;
@@ -79,7 +79,7 @@ canvas{
   display:inline-flex;
   padding: 10px;
   border-radius: 8px;
-  margin-top: 230px;
+  margin-top: 250px;
 }
 
 
@@ -139,7 +139,7 @@ const checkWord = (letterChosed) => {
         guessed.push(letterChosed);
         if(word.indexOf(letterChosed) === -1){
             totalLives--;
-            livesDiv.innerHTML = totalLives > 0 ? "You have " + totalLives + " lives left !" : "GAME OVER! Animal: "+word;
+            livesDiv.innerHTML = totalLives > 0 ? "You have " + totalLives + " lives left !" : "Game Over! Animal: "+word;
             drawHangman();
         }else{
             for(let i=0;i<word.length; i++){
