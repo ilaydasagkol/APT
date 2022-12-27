@@ -39,8 +39,8 @@ html,body{
 .section-heading{
   text-align: center;
   position: relative;
-  top: 330px;
-  font-size: 21px;
+  top: 325px;
+  font-size: 20px;
   color: black;
 }
  #keyboard{
@@ -109,7 +109,9 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-const words = ["donkey","shark","cat","dog","hedgehog","cow","bird","horse","whale","bee"];
+const words = ["tortoise","shark","fish","bird","hedgehog","chamelon",
+"monkey","squirrel","rooster","sheep","camel","elephant","whale",
+"kangaroo","wolf","sparrow","parrot","owl","snake"];
 const word = words[Math.floor(Math.random() * words.length)]
 const revealedWord = new Array(word.length).fill('_');
 var wonGame = false;
@@ -131,7 +133,7 @@ playAgain.addEventListener('click', () => {
 const wonCheck = () => {
     if(word === revealedWord.join('').toLowerCase()){
         wonGame = true;
-        livesDiv.innerHTML = " WON !"
+        livesDiv.innerHTML = " Won !"
     } 
 }
 
