@@ -24,12 +24,11 @@ html,body{
 #section-top{
   text-align: center;
   font-size: 1.5rem;
-  padding: 10px;
+  padding:10px;
   color: black;
   font-family: 'Cinzel', serif;
 }
 #section-middle{
-  display:grid;
   height: fit-content;
   justify-content: space-evenly;
 }
@@ -38,17 +37,16 @@ html,body{
   text-align:left;
 }
 .section-heading{
-  padding:10px;
   text-align: center;
   position: relative;
-  top: 320px;
-  font-size: 20px;
-  color: white;
+  top: 330px;
+  font-size: 21px;
+  color: black;
 }
  #keyboard{
 position: static;
 width: 49%;
-Transform: translate(50%, 330px);
+Transform: translate(50%, 230px);
 } 
 .alpha-key{
   padding: 5px;
@@ -71,18 +69,18 @@ canvas{
 
 }
 #canvas{
-  margin: -90px 200px;
+  margin: -100px 200px;
   width: 270px;
-  height: 250px;
+  height: 220px;
   background-color: #f1faee;
   outline: 2px ridge black;
 }
 #restart{ 
   background-color: #f1faee;
   display:inline-flex;
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 250px;
+  padding: 5px;
+  border-radius: 15px;
+  margin-top: 306px;
 }
 
 
@@ -142,7 +140,7 @@ const checkWord = (letterChosed) => {
         guessed.push(letterChosed);
         if(word.indexOf(letterChosed) === -1){
             totalLives--;
-            livesDiv.innerHTML = totalLives > 0 ? "You have " + totalLives + " lives left !" : "GAME OVER !\n Animal name is: "+word;
+            livesDiv.innerHTML = totalLives > 0 ? "You have " + totalLives + " lives left !" : "Game Over! Animal: "+word;
             drawHangman();
         }else{
             for(let i=0;i<word.length; i++){
@@ -216,5 +214,43 @@ canvas();
 
 }
     </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>
 </html>
