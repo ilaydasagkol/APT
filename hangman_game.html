@@ -82,6 +82,13 @@ canvas{
   padding: 4px;
   border-radius: 15px;
   margin-top: 306px;
+} 
+#hint{
+  background-color: #f1faee;
+  display:inline-flex;
+  padding: 4px;
+  border-radius: 15px;
+  margin-top: 306px;
 }
 
 
@@ -101,6 +108,7 @@ canvas{
     </section>
     <section id="section-bottom">
       <div id="restart" role="button">Restart</div>
+      <div id="hint" role="button">Hint</div>
     </section>
   
     <script>
@@ -112,9 +120,9 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 navigator.serviceWorker.register('sw.js');
           
 const words = ["tortoise","shark","fish","bird","hedgehog","chamelon",
-"monkey","squirrel","rooster","sheep","camel","elephant","whale",
-"kangaroo","wolf","sparrow","parrot","owl","snake"];
-const word = words[Math.floor(Math.random() * words.length)]
+"monkey","rooster","sheep","camel","elephant","kangaroo","wolf","owl","snake"];
+a =Math.floor(Math.random() * words.length)
+const word = words[a]
 const revealedWord = new Array(word.length).fill('_');
 var wonGame = false;
 const guessed = [];
@@ -130,6 +138,15 @@ const playAgain = document.getElementById('restart');
 playAgain.addEventListener('click', () => {
     location.reload();
 });
+var getHint = document.getElementById('hint');
+getHint.onclick =function(){
+const hints= ["Animal famous for its slowness", " Is a large aquatic animal", 
+"Is an aquatic animal","Is a flying animal", "Is a prickly animal", "Color changing animal", 
+"It is a jumping animal","Wakes us up in the morning", "Eat grass", "Lives in the desert", 
+"Has a hose","Has a pouch", "Can howl.", "Flies silently", "Is reptilian"];
+      window.alert(hints[a]);
+
+  }
 
 
 const wonCheck = () => {
